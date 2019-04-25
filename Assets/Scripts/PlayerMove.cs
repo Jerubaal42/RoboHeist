@@ -26,7 +26,7 @@ public class PlayerMove : MonoBehaviour
         rb = gameObject.GetComponent<Rigidbody>();
     }
 
-    void Update()
+    void FixedUpdate()
     {
         if (rightObject)
         {
@@ -67,14 +67,14 @@ public class PlayerMove : MonoBehaviour
             upsideDownTime += Time.deltaTime;
             Debug.Log(rb.velocity);
             if (rb.velocity.y > -0.1 && rb.velocity.y < 0.1) { grounded = true; } else { grounded = false; upsideDownTime = 0; }
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down), Color.cyan, 0.5f);
+            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * 0.5f, Color.cyan);
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), 0.5f)) { upright = true; upsideDownTime = 0; } else { upright = false; }
             if (isControlled && grounded && upright)
             {
-                rb.velocity = Vector3.Lerp(rb.velocity, transform.forward * Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime, 0.5f);
+                rb.velocity = Vector3.Lerp(rb.velocity, transform.forward * Input.GetAxis("Vertical") * moveSpeed, 0.5f);
                 if (Input.GetAxisRaw("Horizontal") != 0)
                 {
-                    transform.Rotate(Vector3.up, Input.GetAxis("Horizontal") * turnSpeed * Time.deltaTime);
+                    transform.Rotate(Vector3.up, Input.GetAxis("Horizontal") * turnSpeed);
                 }
             }
             if (upsideDownTime > uprightTimeout)
