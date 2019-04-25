@@ -34,4 +34,18 @@ public class CameraMenu : MonoBehaviour
             return true;
         }
     }
+
+    public bool ToggleCameraMenu(bool active)
+    {
+        if (active)
+        {
+            cameraCanvas.enabled = true;
+            return true;
+        }
+        else
+        {
+            cameraCanvas.enabled = false;
+            return false;
+        }
+    }
 }

@@ -1,0 +1,1 @@
+Game assets that need to be implemented into the project. Models and textures should go in here to be imported into Unity at a later point.
