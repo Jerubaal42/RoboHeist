@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 256112953953469163}
   - component: {fileID: 256112953953469159}
   m_Layer: 9
-  m_Name: Player
+  m_Name: PlayerVacuum
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -110,8 +110,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   isControlled: 1
-  moveSpeed: 5
-  turnSpeed: 2
+  moveSpeed: 3
+  turnSpeed: 5
   grounded: 0
   upright: 1
   rightObject: 0

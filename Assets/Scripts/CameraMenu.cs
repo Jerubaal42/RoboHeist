@@ -5,14 +5,21 @@ using UnityEngine;
 public class CameraMenu : MonoBehaviour
 {
     public static CameraMenu camMenu;
-    public Canvas cameraCanvas;
+    public Camera currentCamera;
+    private Camera thisCamera;
+    private bool isActive = false;
 
-    void Start()
+    void Awake()
     {
         camMenu = this;
-        cameraCanvas = GameObject.Find("CameraCanvas").GetComponent<Canvas>();
     }
-    
+
+    private void Start()
+    {
+        thisCamera = gameObject.GetComponent<Camera>();
+        currentCamera.enabled = true;
+    }
+
     void Update()
     {
         if (Input.GetButtonDown("TabMenu"))
@@ -23,29 +30,46 @@ public class CameraMenu : MonoBehaviour
 
     public bool ToggleCameraMenu()
     {
-        if (cameraCanvas.enabled)
+        if (isActive)
         {
-            cameraCanvas.enabled = false;
-            return false;
+            thisCamera.depth = -5;
+            isActive = false;
+            PlayerMove.player.isControlled = true;
         }
         else
         {
-            cameraCanvas.enabled = true;
-            return true;
+            thisCamera.depth = 5;
+            isActive = true;
+            PlayerMove.player.isControlled = false;
         }
+        return isActive;
     }
 
     public bool ToggleCameraMenu(bool active)
     {
         if (active)
         {
-            cameraCanvas.enabled = true;
-            return true;
+            thisCamera.depth = 5;
+            isActive = true;
+            PlayerMove.player.isControlled = false;
         }
         else
         {
-            cameraCanvas.enabled = false;
-            return false;
+            thisCamera.depth = -5;
+            isActive = false;
+            PlayerMove.player.isControlled = true;
         }
+        return isActive;
+    }
+
+    public void ChangeCamera(Camera camera)
+    {
+        if (currentCamera != camera)
+        {
+            currentCamera.enabled = false;
+            camera.enabled = true;
+            currentCamera = camera;
+        }
+        ToggleCameraMenu(false);
     }
 }

@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
+    public static PlayerMove player;
     public bool isControlled = false;
     private Rigidbody rb;
     public float moveSpeed = 1;
@@ -23,6 +24,7 @@ public class PlayerMove : MonoBehaviour
 
     private void Start()
     {
+        player = this;
         rb = gameObject.GetComponent<Rigidbody>();
     }
 

@@ -324,7 +324,7 @@ MonoBehaviour:
   weightNeeded: 10
   isOpen: 0
   openTime: 1
-  openWidth: 1.5
+  openWidth: 2
   openPercent: 0
   openTop: 1
   openBottom: 1
