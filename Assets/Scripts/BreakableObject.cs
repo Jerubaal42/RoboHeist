@@ -11,4 +11,14 @@ public class BreakableObject : MonoBehaviour
         Instantiate(brokenVersion, transform.position, transform.rotation);
         Destroy(gameObject);
     }
+
+    public void ExplodeThis()
+    {
+        GameObject tempObject = Instantiate(brokenVersion, transform.position, transform.rotation);
+        foreach(Transform child in tempObject.transform)
+        {
+            child.GetComponent<Rigidbody>().velocity += Random.onUnitSphere * 50;
+        }
+        Destroy(gameObject);
+    }
 }
