@@ -7,7 +7,6 @@ public class ScoopableObject : MonoBehaviour
     public float weight = 1;
     public bool isCarried = false;
     private Transform vacuumBox;
-    //public Vector3 scaleSize = Vector3.one;
 
     void Start()
     {
@@ -31,7 +30,6 @@ public class ScoopableObject : MonoBehaviour
             PlayerInv.playerInv.weight += weight;
             gameObject.layer = 8;
             gameObject.GetComponent<Rigidbody>().mass = 0.01f;
-            //transform.localScale = scaleSize;
         }
     }
 }
