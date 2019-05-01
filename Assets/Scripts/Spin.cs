@@ -5,6 +5,7 @@ using UnityEngine;
 public class Spin : MonoBehaviour
 {
     public float spinSpeed = 1;
+    public Vector3 spinAxis = Vector3.up;
     private Rigidbody rb;
 
     private void Start()
@@ -14,6 +15,6 @@ public class Spin : MonoBehaviour
 
     void FixedUpdate()
     {
-        rb.AddTorque(Vector3.one * spinSpeed);
+        rb.AddTorque(spinAxis * spinSpeed);
     }
 }

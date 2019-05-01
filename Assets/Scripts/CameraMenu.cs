@@ -17,7 +17,7 @@ public class CameraMenu : MonoBehaviour
     private void Start()
     {
         thisCamera = gameObject.GetComponent<Camera>();
-        currentCamera.enabled = true;
+        ChangeCamera(currentCamera);
     }
 
     void Update()

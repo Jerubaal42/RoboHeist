@@ -16,7 +16,7 @@ public class ScoopableObject : MonoBehaviour
 
     void Update()
     {
-        if (isCarried && (transform.position - vacuumBox.position).sqrMagnitude > 0.25f)
+        if (isCarried && (transform.position - vacuumBox.position).sqrMagnitude > PlayerInv.playerInv.invReturnDistance)
         {
             transform.position = vacuumBox.position;
         }
