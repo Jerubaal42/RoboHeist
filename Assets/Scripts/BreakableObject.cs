@@ -5,6 +5,7 @@ using UnityEngine;
 public class BreakableObject : MonoBehaviour
 {
     public GameObject brokenVersion;
+    public float explodeSpeed = 50;
 
     public void BreakThis()
     {
@@ -17,7 +18,7 @@ public class BreakableObject : MonoBehaviour
         GameObject tempObject = Instantiate(brokenVersion, transform.position, transform.rotation);
         foreach(Transform child in tempObject.transform)
         {
-            child.GetComponent<Rigidbody>().velocity += Random.onUnitSphere * 50;
+            child.GetComponent<Rigidbody>().velocity += Random.onUnitSphere * explodeSpeed;
         }
         Destroy(gameObject);
     }

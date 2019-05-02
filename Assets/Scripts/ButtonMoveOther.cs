@@ -34,36 +34,39 @@ public class ButtonMoveOther : MonoBehaviour
         {
             if (!moved)
             {
-                if (active)
+                if (objectToMove != null)
                 {
-                    if (durationMoved / moveTime < 1)
+                    if (active)
                     {
-                        durationMoved += Time.deltaTime;
-                        objectToMove.transform.position = Vector3.Lerp(initialPosition, initialPosition + distanceToMove, durationMoved / moveTime);
-                        objectToMove.transform.rotation = Quaternion.Slerp(initialRotation, initialRotation * Quaternion.Euler(rotationToRotate), durationMoved / moveTime);
+                        if (durationMoved / moveTime < 1)
+                        {
+                            durationMoved += Time.deltaTime;
+                            objectToMove.transform.position = Vector3.Lerp(initialPosition, initialPosition + distanceToMove, durationMoved / moveTime);
+                            objectToMove.transform.rotation = Quaternion.Slerp(initialRotation, initialRotation * Quaternion.Euler(rotationToRotate), durationMoved / moveTime);
+                        }
+                        else
+                        {
+                            objectToMove.transform.position = initialPosition + distanceToMove;
+                            objectToMove.transform.rotation = initialRotation * Quaternion.Euler(rotationToRotate);
+                            durationMoved = moveTime;
+                            moved = true;
+                        }
                     }
-                    else
+                    if (!active)
                     {
-                        objectToMove.transform.position = initialPosition + distanceToMove;
-                        objectToMove.transform.rotation = initialRotation * Quaternion.Euler(rotationToRotate);
-                        durationMoved = moveTime;
-                        moved = true;
-                    }
-                }
-                if (!active)
-                {
-                    if (durationMoved / moveTime > 0)
-                    {
-                        durationMoved -= Time.deltaTime;
-                        objectToMove.transform.position = Vector3.Lerp(initialPosition, initialPosition + distanceToMove, durationMoved / moveTime);
-                        objectToMove.transform.rotation = Quaternion.Slerp(initialRotation, initialRotation * Quaternion.Euler(rotationToRotate), durationMoved / moveTime);
-                    }
-                    else
-                    {
-                        objectToMove.transform.position = initialPosition;
-                        objectToMove.transform.rotation = initialRotation;
-                        durationMoved = 0;
-                        moved = true;
+                        if (durationMoved / moveTime > 0)
+                        {
+                            durationMoved -= Time.deltaTime;
+                            objectToMove.transform.position = Vector3.Lerp(initialPosition, initialPosition + distanceToMove, durationMoved / moveTime);
+                            objectToMove.transform.rotation = Quaternion.Slerp(initialRotation, initialRotation * Quaternion.Euler(rotationToRotate), durationMoved / moveTime);
+                        }
+                        else
+                        {
+                            objectToMove.transform.position = initialPosition;
+                            objectToMove.transform.rotation = initialRotation;
+                            durationMoved = 0;
+                            moved = true;
+                        }
                     }
                 }
             }
@@ -72,20 +75,22 @@ public class ButtonMoveOther : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.tag == "Player" || other.tag == "Weighted")
-        {
-            if(!weighted || PlayerInv.playerInv.weight > weight || other.tag == "Weighted")
+        if(objectToMove != null) {
+            if (other.tag == "Player" || other.tag == "Weighted")
             {
-                if (fling && (reusable || !active))
+                if (!weighted || PlayerInv.playerInv.weight > weight || other.tag == "Weighted")
                 {
-                    objectToMove.GetComponent<Rigidbody>().isKinematic = false;
-                    objectToMove.GetComponent<Rigidbody>().AddForce(flingDirection.normalized * flingForce);
-                    active = true;
-                }
-                else
-                {
-                    active = true;
-                    moved = false;
+                    if (fling && (reusable || !active))
+                    {
+                        objectToMove.GetComponent<Rigidbody>().isKinematic = false;
+                        objectToMove.GetComponent<Rigidbody>().AddForce(flingDirection.normalized * flingForce);
+                        active = true;
+                    }
+                    else
+                    {
+                        active = true;
+                        moved = false;
+                    }
                 }
             }
         }
@@ -95,14 +100,17 @@ public class ButtonMoveOther : MonoBehaviour
     {
         if (toggleOnLeave)
         {
-            if(other.tag == "Player" || other.tag == "Weighted")
+            if (objectToMove != null)
             {
-                if (!weighted || PlayerInv.playerInv.weight > weight || other.tag == "Weighted")
+                if (other.tag == "Player" || other.tag == "Weighted")
                 {
-                    if (!fling)
+                    if (!weighted || PlayerInv.playerInv.weight > weight || other.tag == "Weighted")
                     {
-                        active = false;
-                        moved = false;
+                        if (!fling)
+                        {
+                            active = false;
+                            moved = false;
+                        }
                     }
                 }
             }

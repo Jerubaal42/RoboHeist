@@ -18,11 +18,14 @@ public class ButtonActivateSpin : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.tag == "Player" || other.tag == "Weighted")
+        if (spinObject != null)
         {
-            if (!weighted || PlayerInv.playerInv.weight > weight || other.tag == "Weighted")
+            if (other.tag == "Player" || other.tag == "Weighted")
             {
-                spinObject.GetComponent<Spin>().enabled = !inverted;
+                if (!weighted || PlayerInv.playerInv.weight > weight || other.tag == "Weighted")
+                {
+                    spinObject.GetComponent<Spin>().enabled = !inverted;
+                }
             }
         }
     }
@@ -31,11 +34,13 @@ public class ButtonActivateSpin : MonoBehaviour
     {
         if (toggleOnLeave)
         {
-            if (other.tag == "Player" || other.tag == "Weighted")
-            {
-                if (!weighted || PlayerInv.playerInv.weight > weight || other.tag == "Weighted")
+            if(spinObject != null) {
+                if (other.tag == "Player" || other.tag == "Weighted")
                 {
-                    spinObject.GetComponent<Spin>().enabled = inverted;
+                    if (!weighted || PlayerInv.playerInv.weight > weight || other.tag == "Weighted")
+                    {
+                        spinObject.GetComponent<Spin>().enabled = inverted;
+                    }
                 }
             }
         }
