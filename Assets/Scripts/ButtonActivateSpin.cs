@@ -4,27 +4,22 @@ using UnityEngine;
 
 public class ButtonActivateSpin : MonoBehaviour
 {
-    public GameObject spinObject;
+    public OtherSpin spinScript;
     public bool active = false;
     public bool toggleOnLeave = false;
     public bool weighted = false;
     public float weight = 1;
     public bool inverted = false;
 
-    private void Start()
-    {
-        spinObject.GetComponent<Spin>().enabled = inverted;
-    }
-
     private void OnTriggerEnter(Collider other)
     {
-        if (spinObject != null)
+        if (spinScript != null)
         {
             if (other.tag == "Player" || other.tag == "Weighted")
             {
                 if (!weighted || PlayerInv.playerInv.weight > weight || other.tag == "Weighted")
                 {
-                    spinObject.GetComponent<Spin>().enabled = !inverted;
+                    spinScript.active = !inverted;
                 }
             }
         }
@@ -34,12 +29,12 @@ public class ButtonActivateSpin : MonoBehaviour
     {
         if (toggleOnLeave)
         {
-            if(spinObject != null) {
+            if(spinScript != null) {
                 if (other.tag == "Player" || other.tag == "Weighted")
                 {
                     if (!weighted || PlayerInv.playerInv.weight > weight || other.tag == "Weighted")
                     {
-                        spinObject.GetComponent<Spin>().enabled = inverted;
+                        spinScript.active = inverted;
                     }
                 }
             }

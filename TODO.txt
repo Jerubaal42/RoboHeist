@@ -6,6 +6,6 @@ Texture - Player
 Model - Player - Optional
 Image - Menu Buttons
 New Font
-Texture - Wall
-Texture - Door
+Texture - Glass
 Texture - Button
+Texture - Rust - Optional

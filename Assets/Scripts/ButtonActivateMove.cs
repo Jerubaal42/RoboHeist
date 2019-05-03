@@ -2,9 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ButtonTriggerDoor : MonoBehaviour
+public class ButtonActivateMove : MonoBehaviour
 {
-    public Door door;
+    public OtherMove moveScript;
     public bool active = false;
     public bool toggleOnLeave = false;
     public bool weighted = false;
@@ -13,13 +13,13 @@ public class ButtonTriggerDoor : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (door != null)
+        if (moveScript != null)
         {
             if (other.tag == "Player" || other.tag == "Weighted")
             {
                 if (!weighted || PlayerInv.playerInv.weight > weight || other.tag == "Weighted")
                 {
-                    door.isOpen = !inverted;
+                    moveScript.active = !inverted;
                 }
             }
         }
@@ -29,12 +29,12 @@ public class ButtonTriggerDoor : MonoBehaviour
     {
         if (toggleOnLeave)
         {
-            if(door != null) {
+            if(moveScript != null) {
                 if (other.tag == "Player" || other.tag == "Weighted")
                 {
                     if (!weighted || PlayerInv.playerInv.weight > weight || other.tag == "Weighted")
                     {
-                        door.isOpen = inverted;
+                        moveScript.active = inverted;
                     }
                 }
             }

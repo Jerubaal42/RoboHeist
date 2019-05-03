@@ -6,7 +6,6 @@ public class ButtonBreakOther : MonoBehaviour
 {
     public BreakableObject breakObject;
     public bool explode = false;
-    public bool active = false;
     public bool weighted = false;
     public float weight = 1;
 

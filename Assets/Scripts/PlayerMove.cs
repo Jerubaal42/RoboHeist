@@ -67,9 +67,7 @@ public class PlayerMove : MonoBehaviour
         else
         {
             upsideDownTime += Time.deltaTime;
-            Debug.Log(rb.velocity);
             if (rb.velocity.y > -0.1 && rb.velocity.y < 0.1) { grounded = true; } else { grounded = false; upsideDownTime = 0; }
-            Debug.DrawRay(transform.position, transform.TransformDirection(Vector3.down) * 0.5f, Color.cyan);
             if (Physics.Raycast(transform.position, transform.TransformDirection(Vector3.down), 0.5f)) { upright = true; upsideDownTime = 0; } else { upright = false; }
             if (isControlled && grounded && upright)
             {

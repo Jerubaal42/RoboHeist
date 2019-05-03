@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(ButtonActivateSpin))]
+[CustomEditor(typeof(ButtonActivateMove))]
 [CanEditMultipleObjects]
-public class ButtonActivateSpinEditor : Editor
+public class ButtonActivateMoveEditor : Editor
 {
-    SerializedProperty spinScript;
+    SerializedProperty moveScript;
     SerializedProperty active;
     SerializedProperty toggleOnLeave;
     SerializedProperty weighted;
@@ -16,7 +16,7 @@ public class ButtonActivateSpinEditor : Editor
 
     private void OnEnable()
     {
-        spinScript = serializedObject.FindProperty("spinScript");
+        moveScript = serializedObject.FindProperty("moveScript");
         active = serializedObject.FindProperty("active");
         toggleOnLeave = serializedObject.FindProperty("toggleOnLeave");
         weighted = serializedObject.FindProperty("weighted");
@@ -27,7 +27,7 @@ public class ButtonActivateSpinEditor : Editor
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
-        EditorGUILayout.PropertyField(spinScript, new GUIContent("Object"));
+        EditorGUILayout.PropertyField(moveScript, new GUIContent("Object"));
         EditorGUILayout.PropertyField(weighted, new GUIContent("Weighted Trigger"));
         if (weighted.boolValue)
         {
