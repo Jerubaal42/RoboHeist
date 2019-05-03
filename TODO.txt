@@ -1,0 +1,11 @@
+Level Design
+Model - Goal Object
+Texture - Goal Object
+Image - Camera Indicator
+Texture - Player
+Model - Player - Optional
+Image - Menu Buttons
+New Font
+Texture - Wall
+Texture - Door
+Texture - Button
