@@ -2,27 +2,31 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ButtonBreakOther : MonoBehaviour
+public class ButtonBreakOther : ButtonBase
 {
     public BreakableObject breakObject;
     public bool explode = false;
-    public bool weighted = false;
-    public float weight = 1;
+    public float explodeSpeed = 50f;
 
-    private void OnTriggerEnter(Collider other)
+    protected override void OnTriggerEnter(Collider other)
     {
-        if(breakObject != null) {
-            if (other.tag == "Player" || other.tag == "Weighted")
+        if (breakObject != null)
+        {
+            if (!other.isTrigger)
             {
-                if (!weighted || PlayerInv.playerInv.weight > weight || other.tag == "Weighted")
+                if (other.tag == "Player" || other.tag == "Weighted")
                 {
-                    if (explode)
+                    if (!weighted || PlayerInv.playerInv.weight > weight || other.tag == "Weighted")
                     {
-                        breakObject.ExplodeThis();
-                    }
-                    else
-                    {
-                        breakObject.BreakThis();
+                        if (changeCamera != null) { changeCamera.Activate(); }
+                        if (explode)
+                        {
+                            breakObject.ExplodeThis(explodeSpeed);
+                        }
+                        else
+                        {
+                            breakObject.BreakThis();
+                        }
                     }
                 }
             }

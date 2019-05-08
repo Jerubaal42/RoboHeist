@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ButtonMoveOther : MonoBehaviour
+public class ButtonMoveOther : ButtonBase
 {
     public GameObject objectToMove;
-    public bool weighted = false;
-    public float weight = 1;
     public Vector3 distanceToMove = Vector3.zero;
     public Vector3 rotationToRotate = Vector3.zero;
     public bool fling = false;
@@ -15,8 +13,6 @@ public class ButtonMoveOther : MonoBehaviour
     private Vector3 initialPosition;
     private Quaternion initialRotation;
     public bool reusable = false;
-    public bool toggleOnLeave = false;
-    public bool active = false;
     public bool moved = true;
     public float moveTime = 1;
     private float durationMoved = 0;
@@ -73,43 +69,52 @@ public class ButtonMoveOther : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    protected override void OnTriggerEnter(Collider other)
     {
         if(objectToMove != null) {
-            if (other.tag == "Player" || other.tag == "Weighted")
+
+            if (!other.isTrigger)
             {
-                if (!weighted || PlayerInv.playerInv.weight > weight || other.tag == "Weighted")
+                if (other.tag == "Player" || other.tag == "Weighted")
                 {
-                    if (fling && (reusable || !active))
+                    if (!weighted || PlayerInv.playerInv.weight > weight || other.tag == "Weighted")
                     {
-                        objectToMove.GetComponent<Rigidbody>().isKinematic = false;
-                        objectToMove.GetComponent<Rigidbody>().AddForce(flingDirection.normalized * flingForce);
-                        active = true;
-                    }
-                    else
-                    {
-                        active = true;
-                        moved = false;
+                        if (changeCamera != null) { changeCamera.Activate(); }
+                        if (fling && (reusable || !active))
+                        {
+                            objectToMove.GetComponent<Rigidbody>().isKinematic = false;
+                            objectToMove.GetComponent<Rigidbody>().AddForce(flingDirection.normalized * flingForce);
+                            active = true;
+                        }
+                        else
+                        {
+                            active = true;
+                            moved = false;
+                        }
                     }
                 }
             }
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    protected override void OnTriggerExit(Collider other)
     {
         if (toggleOnLeave)
         {
             if (objectToMove != null)
             {
-                if (other.tag == "Player" || other.tag == "Weighted")
+                if (!other.isTrigger)
                 {
-                    if (!weighted || PlayerInv.playerInv.weight > weight || other.tag == "Weighted")
+                    if (other.tag == "Player" || other.tag == "Weighted")
                     {
-                        if (!fling)
+                        if (!weighted || PlayerInv.playerInv.weight > weight || other.tag == "Weighted")
                         {
-                            active = false;
-                            moved = false;
+                            if (!fling)
+                            {
+                                if (changeCamera != null) { changeCamera.Activate(); }
+                                active = false;
+                                moved = false;
+                            }
                         }
                     }
                 }

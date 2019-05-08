@@ -20,7 +20,8 @@ public class ButtonMoveOtherEditor : Editor
     SerializedProperty active;
     SerializedProperty moved;
     SerializedProperty moveTime;
-    
+    SerializedProperty changeCamera;
+
     void OnEnable()
     {
         objectToMove = serializedObject.FindProperty("objectToMove");
@@ -36,6 +37,7 @@ public class ButtonMoveOtherEditor : Editor
         active = serializedObject.FindProperty("active");
         moved = serializedObject.FindProperty("moved");
         moveTime = serializedObject.FindProperty("moveTime");
+        changeCamera = serializedObject.FindProperty("changeCamera");
     }
 
     public override void OnInspectorGUI()
@@ -64,6 +66,7 @@ public class ButtonMoveOtherEditor : Editor
             EditorGUILayout.PropertyField(active, new GUIContent("Enabled"));
             EditorGUILayout.PropertyField(moved, new GUIContent("Movement Finished"));
         }
+        EditorGUILayout.PropertyField(changeCamera, new GUIContent("Result Camera"));
         serializedObject.ApplyModifiedProperties();
     }
 }

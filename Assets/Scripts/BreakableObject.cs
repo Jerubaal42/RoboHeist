@@ -5,7 +5,6 @@ using UnityEngine;
 public class BreakableObject : MonoBehaviour
 {
     public GameObject brokenVersion;
-    public float explodeSpeed = 50;
 
     public void BreakThis()
     {
@@ -13,7 +12,7 @@ public class BreakableObject : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void ExplodeThis()
+    public void ExplodeThis(float explodeSpeed)
     {
         GameObject tempObject = Instantiate(brokenVersion, transform.position, transform.rotation);
         foreach(Transform child in tempObject.transform)

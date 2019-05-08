@@ -5,7 +5,9 @@ using UnityEngine;
 public class ScoopableObject : MonoBehaviour
 {
     public float weight = 1;
+    public int charge = 0;
     public bool isCarried = false;
+    public bool isUsed = false;
     private Transform vacuumBox;
 
     void Start()
@@ -16,7 +18,7 @@ public class ScoopableObject : MonoBehaviour
 
     void Update()
     {
-        if (isCarried && (transform.position - vacuumBox.position).sqrMagnitude > PlayerInv.playerInv.invReturnDistance)
+        if (isCarried && (transform.position - vacuumBox.position).sqrMagnitude > PlayerInv.playerInv.invReturnDistance && !isUsed)
         {
             transform.position = vacuumBox.position;
         }
@@ -26,10 +28,20 @@ public class ScoopableObject : MonoBehaviour
     {
         if(!isCarried && collision.gameObject.tag == "Player")
         {
-            isCarried = true;
-            PlayerInv.playerInv.weight += weight;
-            gameObject.layer = 8;
-            gameObject.GetComponent<Rigidbody>().mass = 0.01f;
+            Scoop();
         }
+    }
+
+    public void Scoop()
+    {
+        isCarried = true;
+        if (charge > 0)
+        {
+            PlayerInv.playerInv.batteries += charge;
+            PlayerInv.playerInv.batteryObjects.Add(gameObject);
+        }
+        PlayerInv.playerInv.weight += weight;
+        gameObject.layer = 8;
+        gameObject.GetComponent<Rigidbody>().mass = 0.01f;
     }
 }

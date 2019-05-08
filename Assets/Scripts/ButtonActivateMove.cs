@@ -2,39 +2,43 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ButtonActivateMove : MonoBehaviour
+public class ButtonActivateMove : ButtonBase
 {
     public OtherMove moveScript;
-    public bool active = false;
-    public bool toggleOnLeave = false;
-    public bool weighted = false;
-    public float weight = 1;
-    public bool inverted = false;
 
-    private void OnTriggerEnter(Collider other)
+    protected override void OnTriggerEnter(Collider other)
     {
         if (moveScript != null)
         {
-            if (other.tag == "Player" || other.tag == "Weighted")
+            if (!other.isTrigger)
             {
-                if (!weighted || PlayerInv.playerInv.weight > weight || other.tag == "Weighted")
+                if (other.tag == "Player" || other.tag == "Weighted")
                 {
-                    moveScript.active = !inverted;
+                    if (!weighted || PlayerInv.playerInv.weight > weight || other.tag == "Weighted")
+                    {
+                        if(changeCamera != null) { changeCamera.Activate(); }
+                        moveScript.active = !inverted;
+                    }
                 }
             }
         }
     }
 
-    private void OnTriggerExit(Collider other)
+    protected override void OnTriggerExit(Collider other)
     {
         if (toggleOnLeave)
         {
-            if(moveScript != null) {
-                if (other.tag == "Player" || other.tag == "Weighted")
+            if (moveScript != null)
+            {
+                if (!other.isTrigger)
                 {
-                    if (!weighted || PlayerInv.playerInv.weight > weight || other.tag == "Weighted")
+                    if (other.tag == "Player" || other.tag == "Weighted")
                     {
-                        moveScript.active = inverted;
+                        if (!weighted || PlayerInv.playerInv.weight > weight || other.tag == "Weighted")
+                        {
+                            if (changeCamera != null) { changeCamera.Activate(); }
+                            moveScript.active = inverted;
+                        }
                     }
                 }
             }

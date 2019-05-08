@@ -8,6 +8,7 @@ public class CameraMenu : MonoBehaviour
     public Camera currentCamera;
     private Camera thisCamera;
     private bool isActive = false;
+    public bool allowChange = true;
 
     void Awake()
     {
@@ -22,7 +23,7 @@ public class CameraMenu : MonoBehaviour
 
     void Update()
     {
-        if (Input.GetButtonDown("TabMenu"))
+        if (Input.GetButtonDown("TabMenu") && allowChange)
         {
             ToggleCameraMenu();
         }

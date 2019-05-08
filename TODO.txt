@@ -9,3 +9,5 @@ New Font
 Texture - Glass
 Texture - Button
 Texture - Rust - Optional
+Model - Battery
+Texture - Battery
