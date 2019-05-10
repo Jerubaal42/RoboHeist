@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
-using UnityEngine.SceneManagement;
 
 public class LoadScript : MonoBehaviour
 {
@@ -26,19 +25,17 @@ public class LoadScript : MonoBehaviour
 
     private void Awake()
     {
-        GameObject[] objs = GameObject.FindGameObjectsWithTag("GameController");
-        if(objs.Length > 1)
-        {
-            Destroy(gameObject);
-        }
-        DontDestroyOnLoad(gameObject);
         loader = this;
         savePath = Application.persistentDataPath + "/RoboHeist.dat";
     }
 
+    private void Start()
+    {
+        if (!DataPackage.NewGame) { Load(); }
+    }
+
     public void Load()
     {
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
         if (File.Exists(savePath))
         {
             BinaryFormatter bf = new BinaryFormatter();
@@ -70,33 +67,10 @@ public class LoadScript : MonoBehaviour
         save = new SaveData(playerWeight, playerCharge, checkpointNumber);
         bf.Serialize(file, save);
         file.Close();
+        DataPackage.NewGame = true;
     }
 }
-/*
- private void Save()
-    {
-        BinaryFormatter bf = new BinaryFormatter();
-        FileStream file;
-        if (File.Exists(savePath)) { file = File.Open(savePath,FileMode.Open); }
-        else { file = File.Create(savePath); }
-        save = new SaveData(transform.position, transform.rotation.eulerAngles);
-        bf.Serialize(file, save);
-        file.Close();
-    }
 
-    private void Load()
-    {
-        if (File.Exists(savePath))
-        {
-            BinaryFormatter bf = new BinaryFormatter();
-            FileStream file = File.Open(savePath, FileMode.Open);
-            save = (SaveData)bf.Deserialize(file);
-            file.Close();
-            transform.position = save.GetVector3();
-            transform.rotation = Quaternion.Euler(save.GetRotation());
-        }
-    }
-    */
 [System.Serializable]
 public class SaveData
 {

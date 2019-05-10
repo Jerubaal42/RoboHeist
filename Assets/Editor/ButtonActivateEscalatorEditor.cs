@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEditor;
 
-[CustomEditor(typeof(ButtonActivateMove))]
+[CustomEditor(typeof(ButtonActivateEscalator))]
 [CanEditMultipleObjects]
-public class ButtonActivateMoveEditor : Editor
+public class ButtonActivateEscalatorEditor : Editor
 {
-    SerializedProperty moveScript;
+    SerializedProperty escalator;
     SerializedProperty active;
     SerializedProperty toggleOnLeave;
     SerializedProperty weighted;
@@ -17,7 +17,7 @@ public class ButtonActivateMoveEditor : Editor
 
     private void OnEnable()
     {
-        moveScript = serializedObject.FindProperty("moveScript");
+        escalator = serializedObject.FindProperty("escalator");
         active = serializedObject.FindProperty("active");
         toggleOnLeave = serializedObject.FindProperty("toggleOnLeave");
         weighted = serializedObject.FindProperty("weighted");
@@ -29,13 +29,13 @@ public class ButtonActivateMoveEditor : Editor
     public override void OnInspectorGUI()
     {
         serializedObject.Update();
-        EditorGUILayout.PropertyField(moveScript, new GUIContent("Object"));
+        EditorGUILayout.PropertyField(escalator, new GUIContent("Object"));
         EditorGUILayout.PropertyField(weighted, new GUIContent("Weighted Trigger"));
         if (weighted.boolValue)
         {
             EditorGUILayout.PropertyField(weight, new GUIContent("Activation Weight"));
         }
-        EditorGUILayout.PropertyField(inverted, new GUIContent("Button Stops Movement"));
+        EditorGUILayout.PropertyField(inverted, new GUIContent("Button Stops Escalator"));
         EditorGUILayout.PropertyField(toggleOnLeave, new GUIContent("Reset On Leave"));
         EditorGUILayout.PropertyField(active, new GUIContent("Enabled"));
         EditorGUILayout.PropertyField(changeCamera, new GUIContent("Result Camera"));

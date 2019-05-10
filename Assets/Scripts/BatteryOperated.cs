@@ -32,6 +32,14 @@ public class BatteryOperated : MonoBehaviour
             {
                 if (batTime > (batDelay * (batObjectCount - i)))
                 {
+                    if(batObjects[i].GetComponent<Rigidbody>().isKinematic == false)
+                    {
+                        foreach (Collider c in batObjects[i].GetComponentsInChildren<Collider>())
+                        {
+                            c.enabled = false;
+                        }
+                        batObjects[i].GetComponent<Rigidbody>().isKinematic = true;
+                    }
                     batObjects[i].transform.position = BezierCurve(playerPos[i], Vector3.up * 5 + (playerPos[i] + transform.position) / 2, transform.position, (batTime - (batDelay * (batObjectCount - i))) / batTravelTime);
                     if ((batTime - (batDelay * (batObjectCount - i))) / batTravelTime > 1) { Destroy(batObjects[i]); batObjects.RemoveAt(i); }
                 }
@@ -110,11 +118,6 @@ public class BatteryOperated : MonoBehaviour
         }
         foreach(GameObject battery in batObjects)
         {
-            /*foreach (Collider c in battery.GetComponentsInChildren<Collider>())
-            {
-                c.enabled = false;
-            }
-            battery.GetComponent<Rigidbody>().isKinematic = true;*/
             battery.GetComponent<ScoopableObject>().isUsed = true;
             PlayerInv.playerInv.weight -= battery.GetComponent<ScoopableObject>().weight;
             PlayerInv.playerInv.batteryObjects.Remove(battery);

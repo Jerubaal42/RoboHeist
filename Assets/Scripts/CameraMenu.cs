@@ -31,6 +31,10 @@ public class CameraMenu : MonoBehaviour
 
     public bool ToggleCameraMenu()
     {
+        if (thisCamera == null)
+        {
+            thisCamera = gameObject.GetComponent<Camera>();
+        }
         if (isActive)
         {
             thisCamera.depth = -5;
@@ -48,6 +52,10 @@ public class CameraMenu : MonoBehaviour
 
     public bool ToggleCameraMenu(bool active)
     {
+        if(thisCamera == null)
+        {
+            thisCamera = gameObject.GetComponent<Camera>();
+        }
         if (active)
         {
             thisCamera.depth = 5;

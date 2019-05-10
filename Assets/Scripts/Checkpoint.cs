@@ -13,6 +13,12 @@ public class Checkpoint : MonoBehaviour
         LoadScript.loader.checkpointPos[checkpointNumber] = transform.position;
     }
 
+    private void Update()
+    {
+        if(LoadScript.loader.checkpointCamera[checkpointNumber] != checkpointCamera) { LoadScript.loader.checkpointCamera[checkpointNumber] = checkpointCamera; }
+        if (LoadScript.loader.checkpointCamera[checkpointNumber] != checkpointCamera) { LoadScript.loader.checkpointPos[checkpointNumber] = transform.position; }
+    }
+
     private void OnTriggerEnter(Collider other)
     {
         if (!other.isTrigger)
