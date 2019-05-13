@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerInv : MonoBehaviour
 {
@@ -11,6 +12,8 @@ public class PlayerInv : MonoBehaviour
     public int batteries = 0;
     public List<GameObject> batteryObjects = new List<GameObject>();
     public List<BatteryOperated> batteryToCharge = new List<BatteryOperated>();
+    public Text weightText;
+    public Text batText;
 
     void Awake()
     {

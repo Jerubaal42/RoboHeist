@@ -6,14 +6,14 @@ Font:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Font2
+  m_Name: Font1
   serializedVersion: 5
   m_LineSpacing: 0.1
-  m_DefaultMaterial: {fileID: 2100000, guid: e55e71c97fbf95346b83289c3ade8e87, type: 2}
+  m_DefaultMaterial: {fileID: 2100000, guid: c268cf0b43a97cf4682f38ecff0edee7, type: 2}
   m_FontSize: 0
   m_Texture: {fileID: 0}
   m_AsciiStartOffset: 0
-  m_Tracking: 1.6
+  m_Tracking: 1.5
   m_CharacterSpacing: 0
   m_CharacterPadding: 1
   m_ConvertCase: 1
