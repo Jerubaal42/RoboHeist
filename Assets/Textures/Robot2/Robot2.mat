@@ -21,7 +21,11 @@ Material:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_Name: Robot2
+<<<<<<< HEAD
   m_Shader: {fileID: -6465566751694194690, guid: 4c07ca8d977b8d14a931aa90d294e641,
+=======
+  m_Shader: {fileID: -6465566751694194690, guid: ece5a38143a473645a12ff54893bd477,
+>>>>>>> 2d77fd7ff54cca0d4909202c7ec7cf58b93a7951
     type: 3}
   m_ShaderKeywords: _EMISSION
   m_LightmapFlags: 2
