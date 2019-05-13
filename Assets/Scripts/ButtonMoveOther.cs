@@ -16,12 +16,16 @@ public class ButtonMoveOther : ButtonBase
     public bool moved = true;
     public float moveTime = 1;
     private float durationMoved = 0;
+    private Animator animator;
 
     private void Start()
     {
-
         initialPosition = objectToMove.transform.position;
         initialRotation = objectToMove.transform.rotation;
+        if (gameObject.GetComponent<Animator>())
+        {
+            animator = gameObject.GetComponent<Animator>();
+        }
     }
 
     private void Update()
@@ -30,6 +34,7 @@ public class ButtonMoveOther : ButtonBase
         {
             if (!moved)
             {
+                if (!animator.GetBool("Moving")) { animator.SetBool("Moving", true); }
                 if (objectToMove != null)
                 {
                     if (active)
@@ -66,6 +71,7 @@ public class ButtonMoveOther : ButtonBase
                     }
                 }
             }
+            else if (animator.GetBool("Moving")) { animator.SetBool("Moving", false); }
         }
     }
 

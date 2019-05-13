@@ -9,6 +9,7 @@ public class OtherMove : MonoBehaviour
     private Rigidbody rb;
     public float speed = 1;
     public bool active = false;
+    private Animator animator;
 
     private void Start()
     {
@@ -16,12 +17,17 @@ public class OtherMove : MonoBehaviour
         {
             rb = gameObject.GetComponent<Rigidbody>();
         }
+        if (gameObject.GetComponent<Animator>())
+        {
+            animator = gameObject.GetComponent<Animator>();
+        }
     }
 
     void FixedUpdate()
     {
         if (active)
         {
+            if (!animator.GetBool("Moving")) { animator.SetBool("Moving", true); }
             if (isRigidbody)
             {
                 rb.velocity = Vector3.Lerp(rb.velocity, transform.TransformDirection(moveDirection.normalized) * speed, 0.5f);
@@ -31,5 +37,6 @@ public class OtherMove : MonoBehaviour
                 transform.Translate(moveDirection.normalized * speed * Time.deltaTime);
             }
         }
+        else if (animator.GetBool("Moving")) { animator.SetBool("Moving", false); }
     }
 }
