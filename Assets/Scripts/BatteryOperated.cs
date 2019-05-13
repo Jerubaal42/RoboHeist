@@ -9,6 +9,7 @@ public class BatteryOperated : MonoBehaviour
     public bool activateSpin = false;
     public bool activateMove = false;
     public bool activateDoor = false;
+    public bool activateEscalator = false;
     public float batDelay = 0.5f;
     public float batTravelTime = 1;
     private int curBatPower = 0;
@@ -77,6 +78,13 @@ public class BatteryOperated : MonoBehaviour
             if(gameObject.GetComponent<Door>() != null)
             {
                 gameObject.GetComponent<Door>().isOpen = true;
+            }
+        }
+        if (activateEscalator)
+        {
+            if(gameObject.GetComponent<Escalator>() != null)
+            {
+                gameObject.GetComponent<Escalator>().active = true;
             }
         }
     }
