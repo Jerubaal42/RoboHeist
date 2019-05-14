@@ -7,7 +7,7 @@ using UnityEngine.UI;
 public class Pause : MonoBehaviour
 {
     public bool canPause;
-    private float curTimeScale;
+    private float curTimeScale = 1;
     public Image loadBackground;
     public Image loadIcon;
     public Canvas pauseCanvas;
@@ -15,13 +15,24 @@ public class Pause : MonoBehaviour
 
     private void Start()
     {
-        canPause = true;
+        if (pauseCanvas != null)
+        {
+            canPause = true;
+        }
+        else
+        {
+            canPause = false;
+        }
         StartCoroutine(LoadFade());
+        if (!DataPackage.NewGame && LoadScript.loader != null) { LoadScript.loader.Load(); DataPackage.NewGame = false; }
     }
 
     private void Update()
     {
         if (Input.GetButtonDown("Pause")) { PauseToggle(); }
+        if (Input.GetKeyDown(KeyCode.Keypad1)) { DataPackage.NewGame = true; }
+        if (Input.GetKeyDown(KeyCode.Keypad2)) { DataPackage.NewGame = false; }
+        if (Input.GetKeyDown(KeyCode.KeypadEnter)) { ChangeScene(); }
     }
 
     public void PauseToggle()
@@ -125,5 +136,15 @@ public class Pause : MonoBehaviour
             loadIcon.color = c;
             yield return null;
         }
+    }
+
+    public void NewGame()
+    {
+        DataPackage.NewGame = true;
+    }
+
+    public void ExitGame()
+    {
+        Application.Quit();
     }
 }

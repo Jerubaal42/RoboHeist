@@ -5,32 +5,32 @@ using UnityEngine;
 public class Escalator : MonoBehaviour
 {
     public GameObject step;
-    public Vector3 baseStep;
-    public Vector3 finalStep;
-    public Vector3 depthOffset;
-    private Vector3 baseStepOffset;
-    private Vector3 finalStepOffset;
+    public Vector3 firstStep;
+    public Vector3 secondStep;
+    public Vector3 thirdStep;
+    public Vector3 fourthStep;
     public float speed;
     private float cycle;
     private GameObject[] stepList;
     public int stepNumber;
     public bool active = true;
-    private float offsetLengthRatio;
-    private float mainLengthRatio;
+    private float abRat;
+    private float bcRat;
+    private float cdRat;
+    private float daRat;
 
     void Awake()
     {
+        stepNumber = Mathf.Max(stepNumber, 1);
         stepList = new GameObject[stepNumber];
         for (int i = 0; i < stepNumber; i++)
         {
             stepList[i] = Instantiate(step,transform);
         }
-        baseStepOffset = baseStep + depthOffset;
-        finalStepOffset = finalStep + depthOffset;
         FindRatio();
         for(int i = 0; i < stepList.Length; i++)
         {
-            stepList[i].transform.position = Lerp4(baseStep, finalStep, finalStepOffset, baseStepOffset, mainLengthRatio, offsetLengthRatio, (float)i / stepNumber);
+            stepList[i].transform.position = Lerp4(firstStep, secondStep, thirdStep, fourthStep, abRat, bcRat, cdRat, daRat, (float)i / stepNumber);
         }
     }
     
@@ -46,21 +46,25 @@ public class Escalator : MonoBehaviour
                 {
                     curCycle -= stepNumber;
                 }
-                stepList[i].GetComponent<Rigidbody>().MovePosition(Lerp4(baseStep, finalStep, finalStepOffset, baseStepOffset, mainLengthRatio, offsetLengthRatio, curCycle / stepNumber));
+                stepList[i].GetComponent<Rigidbody>().MovePosition(Lerp4(firstStep, secondStep, thirdStep, fourthStep, abRat, bcRat, cdRat, daRat, curCycle / stepNumber));
             }
         }
     }
 
     private void FindRatio()
     {
-        float a = (baseStep - finalStep).magnitude;
-        float b = depthOffset.magnitude;
-        float c = 2 * a + 2 * b;
-        offsetLengthRatio = b / c;
-        mainLengthRatio = a / c;
+        float a = (firstStep - secondStep).magnitude;
+        float b = (secondStep - thirdStep).magnitude;
+        float c = (thirdStep - fourthStep).magnitude;
+        float d = (fourthStep - firstStep).magnitude;
+        float e = a + b + c + d;
+        abRat = a / e;
+        bcRat = b / e;
+        cdRat = c / e;
+        daRat = d / e;
     }
 
-    private Vector3 Lerp4(Vector3 a, Vector3 b, Vector3 c, Vector3 d, float ratAB, float ratBC, float t)
+    private Vector3 Lerp4(Vector3 a, Vector3 b, Vector3 c, Vector3 d, float ratAB, float ratBC, float ratCD, float ratDA, float t)
     {
         Vector3 result;
         if(t < ratAB)
@@ -71,13 +75,13 @@ public class Escalator : MonoBehaviour
         {
             result = Vector3.Lerp(b, c, (t - ratAB) * (1 / ratBC));
         }
-        else if(t < 2 * ratAB + ratBC)
+        else if(t < ratAB + ratBC + ratCD)
         {
-            result = Vector3.Lerp(c, d, (t - (ratAB + ratBC)) * (1 / ratAB));
+            result = Vector3.Lerp(c, d, (t - (ratAB + ratBC)) * (1 / ratCD));
         }
         else
         {
-            result = Vector3.Lerp(d, a, (t - (2 * ratAB + ratBC)) * (1 / ratBC));
+            result = Vector3.Lerp(d, a, (t - (ratAB + ratBC + ratCD)) * (1 / ratDA));
         }
         return result;
     }

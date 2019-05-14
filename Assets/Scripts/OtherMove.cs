@@ -27,7 +27,10 @@ public class OtherMove : MonoBehaviour
     {
         if (active)
         {
-            if (!animator.GetBool("Moving")) { animator.SetBool("Moving", true); }
+            if (animator)
+            {
+                if (!animator.GetBool("Moving")) { animator.SetBool("Moving", true); }
+            }
             if (isRigidbody)
             {
                 rb.velocity = Vector3.Lerp(rb.velocity, transform.TransformDirection(moveDirection.normalized) * speed, 0.5f);
@@ -37,6 +40,9 @@ public class OtherMove : MonoBehaviour
                 transform.Translate(moveDirection.normalized * speed * Time.deltaTime);
             }
         }
-        else if (animator.GetBool("Moving")) { animator.SetBool("Moving", false); }
+        else if (animator)
+        {
+        if (animator.GetBool("Moving")) { animator.SetBool("Moving", false); }
+        }
     }
 }

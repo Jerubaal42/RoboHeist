@@ -29,11 +29,6 @@ public class LoadScript : MonoBehaviour
         savePath = Application.persistentDataPath + "/RoboHeist.dat";
     }
 
-    private void Start()
-    {
-        if (!DataPackage.NewGame) { Load(); }
-    }
-
     public void Load()
     {
         if (File.Exists(savePath))
@@ -45,12 +40,12 @@ public class LoadScript : MonoBehaviour
             checkpointNumber = save.checkpoint;
             PlayerMove.player.gameObject.transform.position = checkpointPos[checkpointNumber];
             CameraMenu.camMenu.ChangeCamera(checkpointCamera[checkpointNumber]);
-            for(int i = 0; i <= save.charge; i++)
+            for(int i = 0; i < save.charge; i++)
             {
                 GameObject temp = Instantiate(batteryPrefab);
                 temp.GetComponent<ScoopableObject>().Scoop();
             }
-            for(int i = (int)PlayerInv.playerInv.weight; i <= save.weight; i++)
+            for(int i = (int)PlayerInv.playerInv.weight; i < save.weight; i++)
             {
                 GameObject temp = Instantiate(weightPrefab);
                 temp.GetComponent<ScoopableObject>().Scoop();
@@ -67,7 +62,7 @@ public class LoadScript : MonoBehaviour
         save = new SaveData(playerWeight, playerCharge, checkpointNumber);
         bf.Serialize(file, save);
         file.Close();
-        DataPackage.NewGame = true;
+        DataPackage.NewGame = false;
     }
 }
 

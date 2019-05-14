@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 2798383125400241969}
   - component: {fileID: 2798383125400241966}
   - component: {fileID: 2798383125400241967}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: DoorBottom
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -58,7 +58,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: fb8f8929c15bb9149b0538f4f97fc076, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -103,7 +103,7 @@ GameObject:
   - component: {fileID: 2798383125429895952}
   - component: {fileID: 2798383125429895953}
   - component: {fileID: 2798383125429895950}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: DoorLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: fb8f8929c15bb9149b0538f4f97fc076, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -194,7 +194,7 @@ GameObject:
   - component: {fileID: 2798383125650779583}
   - component: {fileID: 2798383125650779580}
   - component: {fileID: 2798383125650779581}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: DoorTop
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -240,7 +240,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: fb8f8929c15bb9149b0538f4f97fc076, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -284,7 +284,7 @@ GameObject:
   - component: {fileID: 2798383125674604017}
   - component: {fileID: 2798383125674604015}
   - component: {fileID: 2798383125674604014}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: DoorBase
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -330,7 +330,7 @@ MonoBehaviour:
   openBottom: 1
   openLeft: 1
   openRight: 1
-  playerTrigger: 1
+  playerTrigger: 0
 --- !u!136 &2798383125674604014
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -357,7 +357,7 @@ GameObject:
   - component: {fileID: 2798383125855041244}
   - component: {fileID: 2798383125855041245}
   - component: {fileID: 2798383125855041242}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: DoorRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -403,7 +403,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 31321ba15b8f8eb4c954353edc038b1d, type: 2}
+  - {fileID: 2100000, guid: fb8f8929c15bb9149b0538f4f97fc076, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

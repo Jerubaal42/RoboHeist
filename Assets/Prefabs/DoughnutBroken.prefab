@@ -122,7 +122,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 1
+  charge: 1
   isCarried: 0
+  isUsed: 0
 --- !u!1 &539261785833713964
 GameObject:
   m_ObjectHideFlags: 0
@@ -280,7 +282,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 1
+  charge: 1
   isCarried: 0
+  isUsed: 0
 --- !u!1 &2819520567908172606
 GameObject:
   m_ObjectHideFlags: 0
@@ -403,7 +407,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 1
+  charge: 1
   isCarried: 0
+  isUsed: 0
 --- !u!1 &5213457081881377617
 GameObject:
   m_ObjectHideFlags: 0
@@ -526,7 +532,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 1
+  charge: 1
   isCarried: 0
+  isUsed: 0
 --- !u!1 &8038685610658900780
 GameObject:
   m_ObjectHideFlags: 0
@@ -649,4 +657,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   weight: 1
+  charge: 3
   isCarried: 0
+  isUsed: 0

@@ -1,22 +1,13 @@
 fileFormatVersion: 2
-guid: 8f89aa733e740bd46a4b9c1946b615c2
+guid: d182d1760ebdee5428b41206248a0e19
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: 3980168229369012863
-    second: start_0
+      213: 8976380418918096590
+    second: Cameras_0
   - first:
-      213: 2972099617956944866
-    second: start_1
-  - first:
-      213: -5356019989119681097
-    second: start_2
-  - first:
-      213: 3413425733155976357
-    second: start_3
-  - first:
-      213: -4005815919993586982
-    second: start_4
+      213: 82064445185467336
+    second: Cameras_1
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -47,7 +38,7 @@ TextureImporter:
   textureSettings:
     serializedVersion: 2
     filterMode: 0
-    aniso: 1
+    aniso: -1
     mipBias: -100
     wrapU: 1
     wrapV: 1
@@ -60,7 +51,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 47
+  spritePixelsToUnits: 300
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -99,13 +90,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: start_0
+      name: Cameras_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 94
-        width: 75
-        height: 47
+        y: 85
+        width: 85
+        height: 85
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -113,83 +104,20 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: fc4082cbdad5410478c3379385c9e63a
-      internalID: 3980168229369012863
+      spriteID: 1912daee6e246e14c81552a81bac0677
+      internalID: 8976380418918096590
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: start_1
-      rect:
-        serializedVersion: 2
-        x: 75
-        y: 94
-        width: 75
-        height: 47
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 94626062973edd44a8c6ac49e38dc1ed
-      internalID: 2972099617956944866
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: start_2
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 47
-        width: 75
-        height: 47
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 74b7abf70bbc46d448ad04900f36877f
-      internalID: -5356019989119681097
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: start_3
-      rect:
-        serializedVersion: 2
-        x: 75
-        y: 47
-        width: 75
-        height: 47
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: cb00dc2426e125242b00238cd8f43478
-      internalID: 3413425733155976357
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: start_4
+      name: Cameras_1
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 75
-        height: 47
+        width: 85
+        height: 85
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -197,8 +125,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: aad806fa56ecda5488d7da5218cfe64e
-      internalID: -4005815919993586982
+      spriteID: 2bb0accb1e7deb14eba588915c88a93b
+      internalID: 82064445185467336
       vertices: []
       indices: 
       edges: []
@@ -206,7 +134,7 @@ TextureImporter:
     outline: []
     physicsShape: []
     bones: []
-    spriteID: c36c794eda1c07443a3fdfd1a40f678d
+    spriteID: 961d39137b988f64bb1813ceb8f67a85
     internalID: 0
     vertices: []
     indices: 

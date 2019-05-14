@@ -594,7 +594,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1127480804972078304}
-  - component: {fileID: 7002989737836939674}
   - component: {fileID: 4178993048941254384}
   m_Layer: 0
   m_Name: Robot
@@ -619,25 +618,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: -106.048004, z: 0}
---- !u!95 &7002989737836939674
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4178993048941254387}
-  m_Enabled: 1
-  m_Avatar: {fileID: 9000000, guid: 9241c71566413924b88f55514b757e39, type: 3}
-  m_Controller: {fileID: 0}
-  m_CullingMode: 1
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!54 &4178993048941254384
 Rigidbody:
   m_ObjectHideFlags: 0
