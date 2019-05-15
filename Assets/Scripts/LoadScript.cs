@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using System.Runtime.Serialization.Formatters.Binary;
+using UnityEngine.SceneManagement;
 
 public class LoadScript : MonoBehaviour
 {
@@ -37,6 +38,7 @@ public class LoadScript : MonoBehaviour
             FileStream file = File.Open(savePath, FileMode.Open);
             save = (SaveData)bf.Deserialize(file);
             file.Close();
+            if(SceneManager.GetActiveScene().name != save.level) { Pause.pause.ChangeScene(save.level); }
             checkpointNumber = save.checkpoint;
             PlayerMove.player.gameObject.transform.position = checkpointPos[checkpointNumber];
             CameraMenu.camMenu.ChangeCamera(checkpointCamera[checkpointNumber]);
@@ -59,7 +61,7 @@ public class LoadScript : MonoBehaviour
         FileStream file;
         if(File.Exists(savePath)) { file = File.Open(savePath, FileMode.Open); }
         else { file = File.Create(savePath); }
-        save = new SaveData(playerWeight, playerCharge, checkpointNumber);
+        save = new SaveData(playerWeight, playerCharge, checkpointNumber, SceneManager.GetActiveScene().name);
         bf.Serialize(file, save);
         file.Close();
         DataPackage.NewGame = false;
@@ -69,14 +71,16 @@ public class LoadScript : MonoBehaviour
 [System.Serializable]
 public class SaveData
 {
+    public string level;
     public float weight;
     public int charge;
     public int checkpoint;
 
-    public SaveData(float weight, int charge, int checkpoint)
+    public SaveData(float weight, int charge, int checkpoint, string level)
     {
         this.weight = weight;
         this.charge = charge;
         this.checkpoint = checkpoint;
+        this.level = level;
     }
 }

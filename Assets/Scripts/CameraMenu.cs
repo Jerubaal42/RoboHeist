@@ -10,6 +10,7 @@ public class CameraMenu : MonoBehaviour
     private bool isActive = false;
     public bool allowChange = true;
     public Transform player;
+    public float yPos = 50;
 
     void Awake()
     {
@@ -28,7 +29,7 @@ public class CameraMenu : MonoBehaviour
         {
             ToggleCameraMenu();
         }
-        transform.position = new Vector3(player.position.x, 30, player.position.z);
+        transform.position = new Vector3(player.position.x, yPos, player.position.z);
     }
 
     public bool ToggleCameraMenu()

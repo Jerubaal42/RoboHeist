@@ -24,8 +24,7 @@ public class PlayerInv : MonoBehaviour
 
     private void Start()
     {
-        weightText.text = weight + " Pounds";
-        batText.text = batteries + " Batteries";
+        UpdateText();
     }
 
     private void Update()
@@ -34,7 +33,7 @@ public class PlayerInv : MonoBehaviour
         {
             useImage.enabled = true;
             useText.enabled = true;
-            useText.text = batteries >= batteryToCharge[0].powerReq ? "Activate " + batteryToCharge[0].name + " using " + batteryToCharge[0].powerReq + " batteries" : "Need " + batteryToCharge[0].powerReq + " batteries to activate " + batteryToCharge[0].name;
+            useText.text = batteries >= batteryToCharge[0].powerReq ? "Activate " + batteryToCharge[0].name + " using " + VerboseInt(batteryToCharge[0].powerReq) + " batteries" : "Need " + VerboseInt(batteryToCharge[0].powerReq) + " batteries to activate " + batteryToCharge[0].name;
             if (Input.GetButton("LaunchBattery"))
             {
                 if (batteries >= batteryToCharge[0].powerReq)
@@ -55,7 +54,46 @@ public class PlayerInv : MonoBehaviour
 
     public void UpdateText()
     {
-        weightText.text = weight + " Pounds";
-        batText.text = batteries + " Batteries";
+        weightText.text = VerboseInt((int)weight) + " Ounces";
+        batText.text = VerboseInt(batteries) + " Batteries";
+    }
+
+    public string VerboseInt(int i)
+    {
+        return i < 20
+            ? DataPackage.numNameS[i] :
+                (
+                    i < 100
+                    ?
+                    (
+                        i % 10 == 0
+                        ? DataPackage.numNameL[(i / 10) - 2] :
+                        DataPackage.numNamePre[(i / 10) - 2] + DataPackage.numNameS[i % 10]
+                    )
+                    :
+                    (
+                        i < 2000
+                        ? DataPackage.numNameS[i / 100]
+                        :
+                        (
+                            i / 100 % 10 == 0
+                            ? DataPackage.numNameL[(i / 1000) - 2]
+                            : DataPackage.numNamePre[(i / 1000) - 2] + DataPackage.numNameS[i % 1000 / 100]
+                        )
+                    )
+                    +
+                    (
+                        i % 100 == 0
+                        ? DataPackage.numNameL[8]
+                        : DataPackage.numNamePre[8] +
+                        (
+                            i % 100 < 20 ?
+                            DataPackage.numNameS[i % 100] :
+                            batteries % 10 == 0
+                            ? DataPackage.numNameL[(i % 100 / 10) - 2]
+                            : DataPackage.numNamePre[(i % 100 / 10) - 2] + DataPackage.numNameS[i % 10]
+                        )
+                    )
+                );
     }
 }

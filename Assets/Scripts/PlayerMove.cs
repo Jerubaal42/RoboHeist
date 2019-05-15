@@ -22,7 +22,7 @@ public class PlayerMove : MonoBehaviour
     private Vector3 curPos;
     private Quaternion curRot;
 
-    private void Start()
+    private void Awake()
     {
         player = this;
         rb = gameObject.GetComponent<Rigidbody>();

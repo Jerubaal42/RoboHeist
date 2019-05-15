@@ -6,12 +6,14 @@ using UnityEngine.UI;
 
 public class Pause : MonoBehaviour
 {
+    public static Pause pause;
     public bool canPause;
     private float curTimeScale = 1;
     public Image loadBackground;
     public Image loadIcon;
     public Canvas pauseCanvas;
     private float fade = 1;
+    private WaitForSeconds fadeDelay = new WaitForSeconds(0.1f);
 
     private void Start()
     {
@@ -23,6 +25,7 @@ public class Pause : MonoBehaviour
         {
             canPause = false;
         }
+        System.GC.Collect();
         StartCoroutine(LoadFade());
         if (!DataPackage.NewGame && LoadScript.loader != null) { LoadScript.loader.Load(); DataPackage.NewGame = false; }
     }
@@ -119,7 +122,7 @@ public class Pause : MonoBehaviour
             c = loadIcon.color;
             c.a = fade;
             loadIcon.color = c;
-            yield return new WaitForSeconds(0.1f);
+            yield return fadeDelay;
         }
     }
 
@@ -134,7 +137,7 @@ public class Pause : MonoBehaviour
             c = loadIcon.color;
             c.a = fade;
             loadIcon.color = c;
-            yield return null;
+            yield return fadeDelay;
         }
     }
 
