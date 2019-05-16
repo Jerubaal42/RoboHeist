@@ -12,7 +12,7 @@ public class FragileObject : BreakableObject
     {
         if (!broken)
         {
-            if (collision.relativeVelocity.sqrMagnitude > breakforce || collision.gameObject.tag == "Player")
+            if (collision.relativeVelocity.sqrMagnitude > breakforce || (collision.gameObject.tag == "Player" && breakOnPlayer))
             {
                 broken = true;
                 BreakThis();

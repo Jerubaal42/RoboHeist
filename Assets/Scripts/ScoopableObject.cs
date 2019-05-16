@@ -13,7 +13,6 @@ public class ScoopableObject : MonoBehaviour
     void Start()
     {
         vacuumBox = PlayerInv.playerInv.gameObject.transform;
-        if (isCarried) { PlayerInv.playerInv.weight += weight; gameObject.layer = 8; PlayerInv.playerInv.UpdateText(); }
     }
 
     void Update()
@@ -34,6 +33,8 @@ public class ScoopableObject : MonoBehaviour
 
     public void Scoop()
     {
+        gameObject.layer = 8;
+        gameObject.GetComponent<Rigidbody>().mass = 0.01f;
         isCarried = true;
         if (charge > 0)
         {
@@ -42,7 +43,5 @@ public class ScoopableObject : MonoBehaviour
         }
         PlayerInv.playerInv.weight += weight;
         PlayerInv.playerInv.UpdateText();
-        gameObject.layer = 8;
-        gameObject.GetComponent<Rigidbody>().mass = 0.01f;
     }
 }

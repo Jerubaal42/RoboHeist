@@ -14,12 +14,6 @@ public class Checkpoint : MonoBehaviour
         LoadScript.loader.checkpointRot[checkpointNumber] = transform.rotation.eulerAngles;
     }
 
-    private void Update()
-    {
-        if(LoadScript.loader.checkpointCamera[checkpointNumber] != checkpointCamera) { LoadScript.loader.checkpointCamera[checkpointNumber] = checkpointCamera; }
-        if (LoadScript.loader.checkpointCamera[checkpointNumber] != checkpointCamera) { LoadScript.loader.checkpointPos[checkpointNumber] = transform.position; }
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (!other.isTrigger)
@@ -31,6 +25,7 @@ public class Checkpoint : MonoBehaviour
                     LoadScript.loader.checkpointNumber = checkpointNumber;
                     LoadScript.loader.playerWeight = PlayerInv.playerInv.weight;
                     LoadScript.loader.playerCharge = PlayerInv.playerInv.batteries;
+                    LoadScript.loader.Save();
                 }
             }
         }

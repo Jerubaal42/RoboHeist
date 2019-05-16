@@ -44,15 +44,18 @@ public class LoadScript : MonoBehaviour
             PlayerMove.player.gameObject.transform.position = checkpointPos[checkpointNumber];
             PlayerMove.player.gameObject.transform.rotation = Quaternion.Euler(checkpointRot[checkpointNumber]);
             CameraMenu.camMenu.ChangeCamera(checkpointCamera[checkpointNumber]);
-            for(int i = 0; i < save.charge; i++)
+            for(int i = 0; i < save.weight; i++)
             {
-                GameObject temp = Instantiate(batteryPrefab);
-                temp.GetComponent<ScoopableObject>().Scoop();
-            }
-            for(int i = (int)PlayerInv.playerInv.weight; i < save.weight; i++)
-            {
-                GameObject temp = Instantiate(weightPrefab);
-                temp.GetComponent<ScoopableObject>().Scoop();
+                if (i < save.charge)
+                {
+                    GameObject temp = Instantiate(batteryPrefab);
+                    temp.GetComponent<ScoopableObject>().Scoop();
+                }
+                else
+                {
+                    GameObject temp = Instantiate(weightPrefab);
+                    temp.GetComponent<ScoopableObject>().Scoop();
+                }
             }
         }
     }
@@ -63,6 +66,7 @@ public class LoadScript : MonoBehaviour
         FileStream file;
         if(File.Exists(savePath)) { file = File.Open(savePath, FileMode.Open); }
         else { file = File.Create(savePath); }
+        Debug.Log(checkpointNumber + " " + playerWeight + " " + playerCharge);
         save = new SaveData(playerWeight, playerCharge, checkpointNumber, SceneManager.GetActiveScene().name);
         bf.Serialize(file, save);
         file.Close();
