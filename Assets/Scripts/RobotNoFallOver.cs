@@ -6,6 +6,6 @@ public class RobotNoFallOver : MonoBehaviour
 {
     void Start()
     {
-        gameObject.GetComponent<Rigidbody>().centerOfMass = Vector3.down * transform.localScale.y;
+        gameObject.GetComponent<Rigidbody>().centerOfMass = Vector3.down * transform.localScale.y * 3.8f;
     }
 }

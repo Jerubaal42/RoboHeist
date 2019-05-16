@@ -15,6 +15,11 @@ public class Pause : MonoBehaviour
     private float fade = 1;
     private WaitForSeconds fadeDelay = new WaitForSeconds(0.1f);
 
+    private void Awake()
+    {
+        pause = this;
+    }
+
     private void Start()
     {
         if (pauseCanvas != null)
