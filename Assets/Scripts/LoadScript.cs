@@ -12,6 +12,7 @@ public class LoadScript : MonoBehaviour
     public float playerWeight = 0;
     public int playerCharge = 0;
     public Vector3[] checkpointPos;
+    public Vector3[] checkpointRot;
     public Camera[] checkpointCamera;
     private string savePath;
     private SaveData save;
@@ -41,6 +42,7 @@ public class LoadScript : MonoBehaviour
             if(SceneManager.GetActiveScene().name != save.level) { Pause.pause.ChangeScene(save.level); }
             checkpointNumber = save.checkpoint;
             PlayerMove.player.gameObject.transform.position = checkpointPos[checkpointNumber];
+            PlayerMove.player.gameObject.transform.rotation = Quaternion.Euler(checkpointRot[checkpointNumber]);
             CameraMenu.camMenu.ChangeCamera(checkpointCamera[checkpointNumber]);
             for(int i = 0; i < save.charge; i++)
             {

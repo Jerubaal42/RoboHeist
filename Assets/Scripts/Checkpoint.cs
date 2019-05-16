@@ -11,6 +11,7 @@ public class Checkpoint : MonoBehaviour
     {
         LoadScript.loader.checkpointCamera[checkpointNumber] = checkpointCamera;
         LoadScript.loader.checkpointPos[checkpointNumber] = transform.position;
+        LoadScript.loader.checkpointRot[checkpointNumber] = transform.rotation.eulerAngles;
     }
 
     private void Update()
