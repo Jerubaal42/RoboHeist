@@ -18,11 +18,20 @@ public class LoadScript : MonoBehaviour
     private SaveData save;
     public GameObject weightPrefab;
     public GameObject batteryPrefab;
+    public string sceneName;
 
     private void Awake()
     {
         loader = this;
         savePath = Application.persistentDataPath + "/RoboHeist.dat";
+    }
+
+    public void DelLoad()
+    {
+        if (File.Exists(savePath))
+        {
+            File.Delete(savePath);
+        }
     }
 
     public void Load()
@@ -61,7 +70,7 @@ public class LoadScript : MonoBehaviour
         if(File.Exists(savePath)) { file = File.Open(savePath, FileMode.Open); }
         else { file = File.Create(savePath); }
         Debug.Log(checkpointNumber + " " + playerWeight + " " + playerCharge);
-        save = new SaveData(playerWeight, playerCharge, checkpointNumber, SceneManager.GetActiveScene().name);
+        save = new SaveData(playerWeight, playerCharge, checkpointNumber, sceneName);
         bf.Serialize(file, save);
         file.Close();
         DataPackage.NewGame = false;
