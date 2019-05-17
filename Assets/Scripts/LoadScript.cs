@@ -24,6 +24,7 @@ public class LoadScript : MonoBehaviour
     {
         loader = this;
         savePath = Application.persistentDataPath + "/RoboHeist.dat";
+        if(sceneName != SceneManager.GetActiveScene().name) { sceneName = SceneManager.GetActiveScene().name; }
     }
 
     public void DelLoad()
@@ -69,7 +70,6 @@ public class LoadScript : MonoBehaviour
         FileStream file;
         if(File.Exists(savePath)) { file = File.Open(savePath, FileMode.Open); }
         else { file = File.Create(savePath); }
-        Debug.Log(checkpointNumber + " " + playerWeight + " " + playerCharge);
         save = new SaveData(playerWeight, playerCharge, checkpointNumber, sceneName);
         bf.Serialize(file, save);
         file.Close();

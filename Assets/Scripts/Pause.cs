@@ -146,6 +146,7 @@ public class Pause : MonoBehaviour
     public void NewGame()
     {
         DataPackage.NewGame = true;
+        LoadScript.loader.DelLoad();
     }
 
     public void ExitGame()
