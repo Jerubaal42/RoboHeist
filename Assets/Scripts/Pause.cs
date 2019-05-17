@@ -38,9 +38,6 @@ public class Pause : MonoBehaviour
     private void Update()
     {
         if (Input.GetButtonDown("Pause")) { PauseToggle(); }
-        if (Input.GetKeyDown(KeyCode.Keypad1)) { DataPackage.NewGame = true; }
-        if (Input.GetKeyDown(KeyCode.Keypad2)) { DataPackage.NewGame = false; }
-        if (Input.GetKeyDown(KeyCode.KeypadEnter)) { ChangeScene(); }
     }
 
     public void PauseToggle()

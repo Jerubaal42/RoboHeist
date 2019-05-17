@@ -19,12 +19,6 @@ public class LoadScript : MonoBehaviour
     public GameObject weightPrefab;
     public GameObject batteryPrefab;
 
-    private void Update()
-    {
-        if (Input.GetKeyDown(KeyCode.Keypad0)) { Save(); }
-        if (Input.GetKeyDown(KeyCode.KeypadPeriod)) { Load(); }
-    }
-
     private void Awake()
     {
         loader = this;
